@@ -658,6 +658,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!65 &712261605
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 712261600}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.02, y: 0.010000003, z: 0.007046253}
+  m_Center: {x: 0, y: 3.0740348e-18, z: 0.0034768838}
 --- !u!1 &846908738
 GameObject:
   m_ObjectHideFlags: 0
@@ -1013,6 +1026,7 @@ GameObject:
   - component: {fileID: 975646706}
   - component: {fileID: 975646705}
   - component: {fileID: 975646704}
+  - component: {fileID: 975646708}
   m_Layer: 0
   m_Name: Left Teleportation Ray
   m_TagString: Untagged
@@ -1510,6 +1524,22 @@ MonoBehaviour:
       m_Flags: 0
     m_Reference: {fileID: 7779212132400271959, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   m_ButtonPressPoint: 0.5
+--- !u!114 &975646708
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 975646702}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8dab689365198154f935ad30c16d518f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetController: 1
+  inputAction: {fileID: -944628639613478452, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  rayInteractor: {fileID: 975646706}
+  teleportationProvider: {fileID: 1990828975}
 --- !u!1 &1003461374
 GameObject:
   m_ObjectHideFlags: 0
@@ -2514,12 +2544,12 @@ MonoBehaviour:
       m_Name: Position
       m_Type: 0
       m_ExpectedControlType: Vector3
-      m_Id: 
+      m_Id: 6f9454f8-ef1d-45db-9aa5-60a2015e2917
       m_Processors: 
       m_Interactions: 
       m_SingletonActionBindings:
       - m_Name: 
-        m_Id: 
+        m_Id: 5128cd50-04ec-4496-b608-8cc9caa21631
         m_Path: <XRHMD>/centerEyePosition
         m_Interactions: 
         m_Processors: 
@@ -2542,12 +2572,12 @@ MonoBehaviour:
       m_Name: Rotation
       m_Type: 0
       m_ExpectedControlType: Quaternion
-      m_Id: 
+      m_Id: d4652448-2afb-42c5-862a-aa0e27c7e898
       m_Processors: 
       m_Interactions: 
       m_SingletonActionBindings:
       - m_Name: 
-        m_Id: 
+        m_Id: af5932df-4043-431b-8d3a-d304732647fa
         m_Path: <XRHMD>/centerEyeRotation
         m_Interactions: 
         m_Processors: 
@@ -2647,6 +2677,7 @@ GameObject:
   - component: {fileID: 1901563514}
   - component: {fileID: 1901563513}
   - component: {fileID: 1901563512}
+  - component: {fileID: 1901563516}
   m_Layer: 0
   m_Name: Right Teleportation Ray
   m_TagString: Untagged
@@ -3144,6 +3175,22 @@ MonoBehaviour:
       m_Flags: 0
     m_Reference: {fileID: 875253871413052681, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   m_ButtonPressPoint: 0.5
+--- !u!114 &1901563516
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1901563510}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8dab689365198154f935ad30c16d518f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetController: 0
+  inputAction: {fileID: -944628639613478452, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  rayInteractor: {fileID: 1901563514}
+  teleportationProvider: {fileID: 1990828975}
 --- !u!1 &1990828972
 GameObject:
   m_ObjectHideFlags: 0

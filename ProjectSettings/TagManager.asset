@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - blocoTeste
+  - sulfato
+  - cloreto
   layers:
   - Default
   - TransparentFX

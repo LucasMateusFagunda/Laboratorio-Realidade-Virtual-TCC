@@ -6,10 +6,14 @@ using UnityEngine;
 
 public class changeFireColor : MonoBehaviour
 {   
-    private Color color;
+    
     public GameObject fire;
     public GameObject sparks;
 
+    public GameObject sulfato;
+    public GameObject cloreto;
+
+    private Color color;
     private ParticleSystem psSelf;
     private ParticleSystem psFire;
     private ParticleSystem psSpark;
@@ -29,17 +33,22 @@ public class changeFireColor : MonoBehaviour
         
     }
 
+    //Verifica com que objeto o fogo está colodindo e troca a cor do fogo para a respectiva cor que reage ao elemento
     private void OnTriggerEnter(Collider other) {
         if(other.gameObject.tag == "sulfato") {
             changeColor(green());
+            //other.gameObject.transform.position = new Vector3(0, 0, 0);
             Destroy(other.gameObject);
+            Instantiate(sulfato);
         }
         if(other.gameObject.tag == "cloreto") {
             changeColor(red());
             Destroy(other.gameObject);
+            Instantiate(cloreto);
         }
     }
 
+    //muda a cor do fogo
     private void changeColor(Color cor) {
         var mainSelf = psSelf.main;
         var mainFire = psFire.main;
@@ -49,6 +58,7 @@ public class changeFireColor : MonoBehaviour
         mainSpark.startColor = new Color(cor.r, cor.g, cor.b, .5f);
     }
 
+    //retorna a cor verde
     private Color green(){
         color.r = 0;
         color.g = 1;
@@ -56,6 +66,7 @@ public class changeFireColor : MonoBehaviour
         return color;
     }
 
+    //retorna a cor vermelha
     private Color red(){
         color.r = 1;
         color.g = 0;

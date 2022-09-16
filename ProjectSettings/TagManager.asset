@@ -7,6 +7,7 @@ TagManager:
   - blocoTeste
   - sulfato
   - cloreto
+  - lighter
   layers:
   - Default
   - TransparentFX

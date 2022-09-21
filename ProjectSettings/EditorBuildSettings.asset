@@ -8,6 +8,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MainScene.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 0
+    path: Assets/Scenes/morgue.unity
+    guid: 845128cf95f90184697fffb609346de8
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 260dcce6398b59b4d90365753e95deb7, type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 17d5354d1337bb84588a5f871b657150, type: 2}

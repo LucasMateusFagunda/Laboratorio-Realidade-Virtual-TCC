@@ -24,6 +24,7 @@ public class ignite : MonoBehaviour
     private void OnTriggerEnter(Collider other) {
         if(other.gameObject.tag == "lighter") {
             fire.SetActive(true);
+            Destroy(GetComponent<CapsuleCollider>());
         }
         
     }

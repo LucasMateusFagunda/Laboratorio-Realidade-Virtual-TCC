@@ -8,6 +8,9 @@ TagManager:
   - sulfato
   - cloreto
   - lighter
+  - positionCheck
+  - hand
+  - check
   layers:
   - Default
   - TransparentFX

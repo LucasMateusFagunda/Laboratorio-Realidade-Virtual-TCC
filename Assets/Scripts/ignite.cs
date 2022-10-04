@@ -25,6 +25,7 @@ public class ignite : MonoBehaviour
         if(other.gameObject.tag == "lighter") {
             fire.SetActive(true);
             Destroy(GetComponent<CapsuleCollider>());
+            GameObject.Find("UI").GetComponent<changeUIText>().secondText();
         }
         
     }

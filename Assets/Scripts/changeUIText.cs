@@ -45,6 +45,7 @@ public class changeUIText : MonoBehaviour
         "No momento em que colocamos o sal no fogo, estamos fornecendo energia para seus elétrons. No entanto, o estado excitado é instável, portanto, os elétrons que “saltaram” de nível retornam à órbita de seu estado estacionário. Nesse momento, o elétron perde (na forma de onda eletromagnética, ou seja, na forma de luz) uma quantidade de energia que corresponde à diferença de energia existente entre as órbitas envolvidas no movimento do elétron.\n\n" + 
 
         "Como cada sal apresenta elementos diferentes, com átomos que têm níveis de energia também de valores diferentes, a luz emitida por cada um dos sais será em um comprimento de onda bem característico de cada um.");
+        activeText = 3;
     }
 
 
@@ -55,6 +56,7 @@ public class changeUIText : MonoBehaviour
     public void scannerSulfato() {
         setNewText("Sulfato de Cobre (II) ou Sulfato Cúprico é um composto químico com fórmula molecular CuSO4. Este sal existe sob algumas formas, que se diferem por seu grau de hidratação. \n" + 
         "Na sua forma anidra ele se apresenta como um pó de coloração verde opaca ou cinzento, enquanto na sua forma penta-hidratada (CuSO4.5H2O), a forma no qual é mais encontrado, ele é azul brilhante");
+        GameObject.Find("WorldController").GetComponent<videoController>().disableVideo();
     }
 
     public void scannerCloreto() {
@@ -71,6 +73,8 @@ public class changeUIText : MonoBehaviour
             introduction();
         } else if (activeText == 2) {
             secondText();
+        } else if (activeText == 3) {
+            conclusionText();
         }
     }
 }

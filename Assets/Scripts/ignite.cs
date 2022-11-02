@@ -26,7 +26,6 @@ public class ignite : MonoBehaviour
             fire.SetActive(true);
             Destroy(GetComponent<CapsuleCollider>());
             GameObject.Find("UI").GetComponent<changeUIText>().secondText();
-            GameObject.Find("WorldController").GetComponent<videoController>().enableVideo();
         }
         
     }

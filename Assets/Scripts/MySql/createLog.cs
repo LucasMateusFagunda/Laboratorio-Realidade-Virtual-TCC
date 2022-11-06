@@ -17,7 +17,7 @@ public class createLog : MonoBehaviour
         form.AddField("id_login", 2);
         form.AddField("nota", 10);
 
-        using (UnityWebRequest www = UnityWebRequest.Post("http://lucas/lab/test.php", form))
+        using (UnityWebRequest www = UnityWebRequest.Post("http://192.168.31.178/lucas/lab/test.php", form))
         {
             yield return www.SendWebRequest();
 
@@ -29,8 +29,6 @@ public class createLog : MonoBehaviour
             {
                 Debug.Log(www.downloadHandler.text);
             }
-        }
-        
-        
+        }    
     }
 }

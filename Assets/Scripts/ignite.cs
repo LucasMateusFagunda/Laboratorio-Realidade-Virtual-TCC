@@ -15,11 +15,6 @@ public class ignite : MonoBehaviour
         GameObject.Find("UI").GetComponent<changeUIText>().introduction();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     private void OnTriggerEnter(Collider other) {
         if(other.gameObject.tag == "lighter") {

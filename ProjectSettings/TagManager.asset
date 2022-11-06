@@ -11,6 +11,9 @@ TagManager:
   - positionCheck
   - hand
   - check
+  - exitButton
+  - clockButton
+  - fireButton
   layers:
   - Default
   - TransparentFX

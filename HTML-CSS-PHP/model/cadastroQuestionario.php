@@ -4,6 +4,7 @@ require_once("banco.php");
 Class CadastroQuestionario extends Banco {
     
     private $turma;
+    private $nomeQuestionario;
     private $pergunta;
     private $alt1;
     private $alt2;
@@ -12,6 +13,10 @@ Class CadastroQuestionario extends Banco {
 
     public function setTurma($string) {
         $this->turma = $string;
+    }
+
+    public function setNomeQuestionario($string) {
+        $this->nomeQuestionario = $string;
     }
 
     public function setPergunta($string) {
@@ -40,6 +45,10 @@ Class CadastroQuestionario extends Banco {
         return $this->turma;
     }
 
+    public function getNomeQuestionario() {
+        return $this->nomeQuestionario;
+    }
+
     public function getPergunta() {
         return $this->pergunta;
     }
@@ -62,7 +71,7 @@ Class CadastroQuestionario extends Banco {
 
 
     public function incluir() {
-        return $this->setQuestionario($this->getTurma(), $this->getPergunta(), $this->getAlt1(), $this->getAlt2(), $this->getAlt3(), $this->getAlt4(),);
+        return $this->setQuestionario($this->getNomeQuestionario(), $this->getTurma(), $this->getPergunta(), $this->getAlt1(), $this->getAlt2(), $this->getAlt3(), $this->getAlt4(),);
     }
 
 }

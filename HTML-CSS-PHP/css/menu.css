@@ -1,0 +1,59 @@
+.menuButton {
+    border: 0;
+    background: #191919f0;
+    display: inline;
+    top: 10px;
+    position: relative;
+    margin: 10px auto;
+    border: 2px solid #2ecc71;
+    padding: 5px 20px;
+    outline: none;
+    color: white;
+    border-radius: 24px;
+    transition: 0.25s;
+    cursor: pointer;
+}
+
+.menuButton:hover {
+    background: #2ecc71;
+}
+
+form {
+    margin: auto;
+}
+
+.viewButton {
+    border: 0;
+    background: #191919f0;
+    position: relative;
+    margin: 10px auto;
+    border: 2px solid #2ecc71;
+    padding: 5px 20px;
+    outline: none;
+    color: white;
+    border-radius: 24px;
+    transition: 0.25s;
+    cursor: pointer;
+}
+
+.viewButton:hover {
+    background-color: #2ecc71;
+}
+
+.deleteButton {
+    border: 0;
+    background: #191919f0;
+    position: relative;
+    margin: 10px auto;
+    border: 2px solid #bd0000;
+    padding: 5px 20px;
+    outline: none;
+    color: white;
+    border-radius: 24px;
+    transition: 0.25s;
+    cursor: pointer;
+}
+
+.deleteButton:hover {
+    background-color: #bd0000;
+}

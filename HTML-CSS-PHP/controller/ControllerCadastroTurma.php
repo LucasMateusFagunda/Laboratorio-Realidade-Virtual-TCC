@@ -17,4 +17,5 @@ class cadastroTurmaController{
 }
 
 new cadastroTurmaController();
+header("location:../view/cadastroTurma.php");
 ?>

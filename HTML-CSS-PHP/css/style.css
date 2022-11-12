@@ -1,0 +1,89 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    height: 100vh;
+    background-color: #191919;
+    background-image: url("../css/background.jpg");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  .box {
+    width: 400px;
+    padding: 40px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #191919f0;
+    text-align: center;
+    border-radius: 25px;
+  }
+
+  .box h1{
+    color: white;
+  }
+
+  .box table{
+    width: 100%;
+    overflow:hidden;
+    margin: auto;
+    border-radius: 25px;
+  }
+
+  .tituloTabela {
+    background-color: #2ecc71;
+  }
+
+  .box th{
+    color: white;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .box tr:nth-child(even) {background-color: #2e2e2e;}
+
+  .box input[type = "text"], select {
+    border: 0;
+    background: none;
+    display: block;
+    margin: 5px auto;
+    border: 2px solid #3498db;
+    padding: 14px 10px;
+    width: 200px;
+    outline: none;
+    color: white;
+    border-radius: 24px;
+    transition: 0.25s;
+  }
+  
+  .box input[type = "text"]:focus ,select:focus {
+    width: 280px;
+    border-color: #2ecc71;
+  }
+
+  .box option {
+    color: white;
+    background-color: #191919;
+  }
+
+  .box button[type = "submit"] {
+    border: 0;
+    background: none;
+    display: block;
+    margin: 20px auto;
+    border: 2px solid #2ecc71;
+    padding: 14px 70px;
+    outline: none;
+    color: white;
+    border-radius: 24px;
+    transition: 0.25s;
+    cursor: pointer;
+  }
+  
+  .box button[type = "submit"]:hover {
+    background: #2ecc71;
+  }
+

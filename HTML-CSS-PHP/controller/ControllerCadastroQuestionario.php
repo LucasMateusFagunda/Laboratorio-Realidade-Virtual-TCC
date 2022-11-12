@@ -11,6 +11,7 @@ class cadastroQuestionarioController{
 
     private function incluir() {
         $this->cadastro->setTurma($_POST['turma']);
+        $this->cadastro->setNomeQuestionario($_POST['questionarioOption']);
         $this->cadastro->SetPergunta($_POST['pergunta']);
         $this->cadastro->setAlt1($_POST['alt1']);
         $this->cadastro->setAlt2($_POST['alt2']);
@@ -22,4 +23,5 @@ class cadastroQuestionarioController{
 }
 
 new cadastroQuestionarioController();
+header("location:../view/cadastroQuestionario.php");
 ?>

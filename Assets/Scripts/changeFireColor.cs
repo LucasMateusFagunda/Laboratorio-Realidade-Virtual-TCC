@@ -33,11 +33,11 @@ public class changeFireColor : MonoBehaviour
         
     }
 
-    //Verifica com que objeto o fogo est� colodindo e troca a cor do fogo para a respectiva cor que reage ao elemento
+    //Verifica com que objeto o fogo está colodindo e troca a cor do fogo para
+    //a respectiva cor que reage ao elemento
     private void OnTriggerEnter(Collider other) {
         if(other.gameObject.tag == "sulfato") {
             changeColor(green());
-            //other.gameObject.transform.position = new Vector3(0, 0, 0);
             Destroy(other.gameObject);
             Instantiate(sulfato);
             GameObject.Find("UI").GetComponent<changeUIText>().conclusionText();

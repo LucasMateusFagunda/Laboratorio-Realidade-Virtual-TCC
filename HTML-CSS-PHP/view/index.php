@@ -1,5 +1,5 @@
 <?php
-require_once("../controller/ControllerListarTabelaTurma.php");
+require_once("../controller/ControllerTurma.php");
 ?>
 
 <!DOCTYPE html>
@@ -26,7 +26,10 @@ require_once("../controller/ControllerListarTabelaTurma.php");
                     <th class="tituloTabela"></th>
                     <th class="tituloTabela"></th>
                 </tr>
-                <?php new listarTabelaTurma(); ?>
+                <?php
+                    $turma = new TurmaController();
+                    $turma->listarTabelaTurma();
+                ?>
             </table>
         </div>
     </div>

@@ -1,6 +1,6 @@
 <?php
     require_once("menu.php");
-    require_once("../controller/ControllerListarPerguntas.php");
+    require_once("../controller/ControllerPerguntas.php");
 ?>
 
 <!DOCTYPE html>
@@ -24,7 +24,8 @@
                     <th class="tituloTabela"></th>
                     <th class="tituloTabela"></th>
                 </tr>
-                <?php $listar = new listarPerguntas();
+                <?php
+                    $listar = new listarPerguntas();
                     $listar->listarPerguntas($_POST['visualizarTitulo'], $_POST['visualizarTurma']);
                 ?>
             </table>

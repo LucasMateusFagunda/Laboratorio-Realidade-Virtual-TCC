@@ -40,11 +40,16 @@
         }
 
         public function getTurma() {
+            $array = array();
             $result = $this->mysqli->query("SELECT * FROM turma");
             while ($row = $result->fetch_array(MYSQLI_ASSOC)) {
                 $array[] = $row;
             }
-            return $array;
+            if($array) {
+                return $array;
+            } else {
+                return;
+            }
         }
 
         public function getQuestionario() {
@@ -56,6 +61,7 @@
         }
 
         public function getTurmaQuestionario($string) {
+            $array = array();
             $turmaID = $this->mysqli->query("SELECT id FROM turma WHERE turma = '$string'");
             $turmaID = mysqli_fetch_assoc($turmaID);
 
@@ -63,21 +69,31 @@
             while ($row = $result->fetch_array(MYSQLI_ASSOC)) {
                 $array[] = $row;
             }
-            return $array;
+            if($array) {
+                return $array;
+            } else {
+                return;
+            }
         }
 
         public function getPerguntas($titulo, $turma) {
+            $array = array();
             $turmaID = $this->mysqli->query("SELECT id FROM turma WHERE turma = '$turma'");
             $turmaID = mysqli_fetch_assoc($turmaID);
 
             $questionarioID = $this->mysqli->query("SELECT id FROM questionario WHERE titulo = '$titulo'");
             $questionarioID = mysqli_fetch_assoc($questionarioID);
 
-            $result = $this->mysqli->query("SELECT * FROM turma as t inner join questionario as q on q.turma_id = ".$turmaID['id']." and t.id = " .$turmaID['id']." inner join perguntas as p on p.questionario_idquestionario = ".$questionarioID['id']." and q.id = ".$questionarioID['id'].";");
+            $result = $this->mysqli->query("SELECT * FROM turma AS t INNER JOIN questionario AS q ON q.turma_id = ".$turmaID['id']." AND t.id = ".$turmaID['id']." INNER JOIN perguntas AS p ON p.questionario_idquestionario = ".$questionarioID['id']." AND q.id = ".$questionarioID['id'].";");
+            
             while ($row = $result->fetch_array(MYSQLI_ASSOC)) {
                 $array[] = $row;
             }
-            return $array;
+            if($array) {
+                return $array;
+            } else {
+                return;
+            }
         }
 
     }

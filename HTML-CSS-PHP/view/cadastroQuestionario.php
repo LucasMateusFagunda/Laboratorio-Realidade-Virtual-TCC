@@ -1,6 +1,6 @@
 <?php
-    require_once("../controller/ControllerListarTurma.php");
-    require_once("../controller/ControllerListarQuestionario.php");
+    require_once("../controller/ControllerTurma.php");
+    require_once("../controller/ControllerQuestionario.php");
 ?>
 
 <!DOCTYPE html>
@@ -16,18 +16,24 @@
 <body>
     <?php include_once("menu.php") ?>
     <div class="box">
-        <form method="post" action="../controller/ControllerCadastroQuestionario.php" id="form" name="form">
+        <form method="post" action="../controller/ControllerQuestionario.php" name="questionario">
             <div>
 
                 <select name="turma" id="turma">
-                    <?php new listarTurmaController(); ?>
+                    <?php
+                        $turma = new TurmaController();
+                        $turma->listarTurma();
+                    ?>
                 </select> <br>
 
                 <input type="text" name="questionarioOption" list="questionarioOption" placeholder="Digite o questionario" required autofocus>
                 <datalist id="questionarioOption">
-                    <?php new listarQuestionarioController(); ?>
+                <?php
+                        $questionario = new QuestionarioController();
+                        $questionario->listarQuestionario();
+                    ?>
                 </datalist> <br>
-
+                
                 <input type="text" id="pergunta" name="pergunta" placeholder="Pergunta" required> <br>
                 <input type="text" id="alt1" name="alt1" placeholder="Alternativa 1" required> <br>
                 <input type="text" id="alt2" name="alt2" placeholder="Alternativa 2" required> <br>
@@ -35,7 +41,7 @@
                 <input type="text" id="alt4" name="alt4" placeholder="Alternativa 4" required> <br>
             </div>
             <div>
-                <button type="submit" id="cadastrarPergunta">Cadastrar</button>
+                <button type="submit" name="cadastrarPergunta" value="cadastrar">Cadastrar</button>
             </div>
         </form>
     </div>

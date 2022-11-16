@@ -11,12 +11,12 @@
 <body>
     <?php include_once("menu.php") ?>
     <div class="box">
-        <form method="post" action="../controller/ControllerCadastroTurma.php" id="form" name="form">
+        <form method="POST" action="../controller/ControllerTurma.php" id="form" name="form">
             <div>
                 <input type="text" id="nome" name="nome" placeholder="Nome da turma" required autofocus>
             </div>
             <div>
-                <button type="submit" id="cadastrarTurma">Cadastrar</button>
+                <button type="submit" name="cadastrarTurma" id="cadastrarTurma">Cadastrar</button>
             </div>
         </form>
     </div>

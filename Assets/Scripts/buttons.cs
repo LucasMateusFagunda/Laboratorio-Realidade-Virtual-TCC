@@ -6,6 +6,7 @@ public class buttons : MonoBehaviour
 {
 
     public GameObject fireExperiment;
+    public GameObject iodoExperiment;
 
     public GameObject UI;
 
@@ -28,7 +29,7 @@ public class buttons : MonoBehaviour
 
         if (gameObject.tag == "clockButton" & other.gameObject.tag == "hand")
         {
-            print("iodo");
+            iodoExperiment.SetActive(true);
 
             UI.SetActive(false);
 
@@ -40,6 +41,7 @@ public class buttons : MonoBehaviour
         if (gameObject.tag == "exitButton" & other.gameObject.tag == "hand")
         {
             fireExperiment.SetActive(false);
+            iodoExperiment.SetActive(false);
 
             UI.SetActive(true);
 

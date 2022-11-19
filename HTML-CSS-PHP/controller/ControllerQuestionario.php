@@ -3,11 +3,11 @@ require_once("../model/Questionario.php");
 class QuestionarioController{
 
     private $cadastro;
-    private $lista;
+    private $banco;
 
     public function __construct() {
         $this->cadastro = new CadastroQuestionario();
-        $this->lista = new Banco();
+        $this->banco = new Banco();
     }
 
     public function incluir() {
@@ -19,10 +19,11 @@ class QuestionarioController{
         $this->cadastro->setAlt3($_POST['alt3']);
         $this->cadastro->setAlt4($_POST['alt4']);
         $this->cadastro->incluir();
+        header("location: ../view/cadastroQuestionario.php");
     }
 
     public function listarQuestionario() {
-        $row = $this->lista->getQuestionario();
+        $row = $this->banco->getQuestionario();
         foreach ($row as $value) {
             echo "<option value='".$value['titulo']."'>";
         }
@@ -30,7 +31,7 @@ class QuestionarioController{
 
     public function listarQuestionarioTurma($string) {
         
-        $row = $this->lista->getTurmaQuestionario($string);
+        $row = $this->banco->getTurmaQuestionario($string);
         if($row != null) {
             foreach ($row as $value) {
                 echo "
@@ -47,8 +48,8 @@ class QuestionarioController{
                     </th>
 
                     <th>
-                    <form action='deletar' method='post'>
-                    <button class='deleteButton' name='deletarTitulo' value='".$value['turma']."'>Deletar</button>
+                    <form action='../controller/ControllerQuestionario.php' method='post'>
+                    <button class='deleteButton' name='deletarQuestionario' value='".$value['titulo']."'>Deletar</button>
                     </form>
                     </th>
 
@@ -68,11 +69,20 @@ class QuestionarioController{
             ";
         }
     }
+
+    public function deletar(){
+        $this->banco->delQuestionario($_POST['deletarQuestionario']);
+        header("location: ../view/index.php");
+    }
+
 }
 
+$questionario = new QuestionarioController;
+
 if(isset($_POST['cadastrarPergunta'])) {
-    $questionario = new QuestionarioController;
     $questionario->incluir();
+}  else if (isset($_POST['deletarQuestionario'])) {
+    $questionario->deletar();
 }
 
 ?>

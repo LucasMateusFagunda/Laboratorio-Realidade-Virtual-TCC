@@ -3,43 +3,44 @@ require_once("../model/Turma.php");
 class TurmaController{
 
     private $cadastro;
-    private $lista;
+    private $banco;
 
     public function __construct() {
         $this->cadastro = new CadastroTurma();
-        $this->lista = new Banco();
+        $this->banco = new Banco();
     }
 
     public function incluir() {
         $this->cadastro->setNome($_POST['nome']);
         $this->cadastro->incluir();
+        header("location: ../view/cadastroTurma.php");
     }
 
     public function listarTurma() {
         
-        $row = $this->lista->getTurma();
+        $row = $this->banco->getTurma();
         foreach ($row as $value) {
-            echo "<option value='".$value['turma']."'>".$value['turma']."</option>";
+            echo "<option value='".$value['nomeTurma']."'>".$value['nomeTurma']."</option>";
         }
     }
 
     public function listarTabelaTurma() {
-        $row = $this->lista->getTurma();
-        if($row != null) {
+        $row = $this->banco->getTurma();
+        if($row) {
             foreach ($row as $value) {
                 echo "
                     <tr>
-                    <th>".$value['turma']."</th>
+                    <th>".$value['nomeTurma']."</th>
 
                     <th>
                     <form action='listaTurmaQuestionario.php' method='post'>
-                    <button class='viewButton' name='visualizarTurma' value='".$value['turma']."'>Visualizar</button>
+                    <button class='viewButton' name='visualizarTurma' value='".$value['nomeTurma']."'>Visualizar</button>
                     </form>
                     </th>
 
                     <th>
-                    <form action='deletar' method='post'>
-                    <button class='deleteButton' name='deletarTurma' value='".$value['turma']."'>Deletar</button>
+                    <form action='../controller/ControllerTurma.php' method='post'>
+                    <button class='deleteButton' name='deletarTurma' value='".$value['nomeTurma']."'>Deletar</button>
                     </form>
                     </th>
                     </tr>
@@ -58,11 +59,20 @@ class TurmaController{
             ";
         }
     }
+
+    public function deletar() {
+        $this->banco->delTurma($_POST['deletarTurma']);
+        header("location: ../view/index.php");
+    }
+
 }
 
+$turma = new TurmaController();
+
 if(isset($_POST['cadastrarTurma'])) {
-    $turma = new TurmaController();
     $turma->incluir();
+} else if (isset($_POST['deletarTurma'])) {
+    $turma->deletar();
 }
 
 ?>

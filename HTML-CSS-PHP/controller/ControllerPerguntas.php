@@ -1,6 +1,6 @@
 <?php
 require_once("../model/banco.php");
-class listarPerguntas {
+class Perguntas {
     private $lista;
 
     public function __construct() {
@@ -14,21 +14,32 @@ class listarPerguntas {
             foreach ($row as $value) {
                 echo "
                     <tr>
-                    <th>
-                        ".$value['pergunta']."
-                    </th>
 
-                    <th>
-                    <form action='listaPerguntas.php' method='post'>
-                    <button class='viewButton' name='visualizar' value='".$value['titulo']."'>Visualizar</button>
-                    </form>
-                    </th>
+                        <th>
+                            ".$value['Pergunta']."
+                        </th>
 
-                    <th>
-                    <form action='deletar' method='post'>
-                    <button class='deleteButton' name='deletar' value='".$value['titulo']."'>Deletar</button>
-                    </form>
-                    </th>
+                        <th>
+                            ".$value['alt1_r']."
+                        </th>
+
+                        <th>
+                            ".$value['alt2']."
+                        </th>
+
+                        <th>
+                            ".$value['alt3']."
+                        </th>
+
+                        <th>
+                            ".$value['alt4']."
+                        </th>
+
+                        <th>
+                        <form action='../controller/ControllerPerguntas.php' method='post'>
+                            <button class='deleteButton' name='deletarPergunta' value='".$value['Pergunta']."'>Deletar</button>
+                        </form>
+                        </th>
 
                     </tr>
                 ";
@@ -46,6 +57,18 @@ class listarPerguntas {
             ";
         }
     }
+
+    public function deletar() {
+        $banco = new Banco();
+        $banco->delPergunta($_POST['deletarPergunta']);
+        header("location: ../view/index.php");
+    }
+
+}
+
+if(isset($_POST['deletarPergunta'])) {
+    $deletarPergunta = new Perguntas();
+    $deletarPergunta->deletar();
 }
 
 ?>

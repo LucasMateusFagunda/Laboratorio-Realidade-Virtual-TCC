@@ -13,6 +13,9 @@
     <div class="box">
         <form method="POST" action="../controller/ControllerTurma.php" id="form" name="form">
             <div>
+                <h1>Cadastrar Turma</h1>
+            </div>
+            <div>
                 <input type="text" id="nome" name="nome" placeholder="Nome da turma" required autofocus>
             </div>
             <div>

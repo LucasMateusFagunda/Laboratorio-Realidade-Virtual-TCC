@@ -1,10 +1,11 @@
 <?php
-    require_once("../controller/ControllerTurma.php");
-    require_once("../controller/ControllerQuestionario.php");
+require_once("../controller/ControllerTurma.php");
+require_once("../controller/ControllerQuestionario.php");
 ?>
 
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,27 +14,30 @@
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/menu.css">
 </head>
+
 <body>
     <?php include_once("menu.php") ?>
     <div class="box">
         <form method="post" action="../controller/ControllerQuestionario.php" name="questionario">
             <div>
 
+                <h1>Cadastrar Questionário</h1>
+
                 <select name="turma" id="turma">
                     <?php
-                        $turma = new TurmaController();
-                        $turma->listarTurma();
+                    $turma = new TurmaController();
+                    $turma->listarTurma();
                     ?>
                 </select> <br>
 
                 <input type="text" name="questionarioOption" list="questionarioOption" placeholder="Digite o questionario" required autofocus>
                 <datalist id="questionarioOption">
-                <?php
-                        $questionario = new QuestionarioController();
-                        $questionario->listarQuestionario();
+                    <?php
+                    $questionario = new QuestionarioController();
+                    $questionario->listarQuestionario();
                     ?>
                 </datalist> <br>
-                
+
                 <input type="text" id="pergunta" name="pergunta" placeholder="Pergunta" required> <br>
                 <input type="text" id="alt1" name="alt1" placeholder="Alternativa 1" required> <br>
                 <input type="text" id="alt2" name="alt2" placeholder="Alternativa 2" required> <br>
@@ -46,4 +50,5 @@
         </form>
     </div>
 </body>
+
 </html>

@@ -13,28 +13,28 @@
         }
 
         public function setTurma($nome) {
-            $stmt = "INSERT INTO turma VALUES (null, '$nome')";
+            $stmt = "INSERT INTO turma VALUES (null, '$nome', 1)";
             mysqli_query($this->mysqli, $stmt);
             
             
         }
         
         public function setQuestionario($nomeQuestionario, $turma, $pergunta, $alt1, $alt2, $alt3, $alt4) {
-            $result = $this->mysqli->query("select id from questionario where titulo = '$nomeQuestionario'");
+            $result = $this->mysqli->query("SELECT idquestionario FROM questionario WHERE titulo = '$nomeQuestionario'");
             
             if(mysqli_num_rows($result) == 0) {
-                $turmaID = $this->mysqli->query("SELECT id FROM turma WHERE turma = '$turma'");
+                $turmaID = $this->mysqli->query("SELECT idturma FROM turma WHERE nomeTurma = '$turma'");
                 $row = mysqli_fetch_assoc($turmaID);
                 
-                $stmt = "INSERT INTO questionario VALUES(null, '$nomeQuestionario',".$row['id'].")";
+                $stmt = "INSERT INTO questionario VALUES(null, '$nomeQuestionario',".$row['idturma'].")";
                 mysqli_query($this->mysqli, $stmt);
             }
 
-            $nomeQuestionarioId = $this->mysqli->query("SELECT id FROM questionario WHERE titulo = '$nomeQuestionario'");
+            $nomeQuestionarioId = $this->mysqli->query("SELECT idquestionario FROM questionario WHERE titulo = '$nomeQuestionario'");
             $row = mysqli_fetch_assoc($nomeQuestionarioId);
                 
 
-            $stmt = "INSERT INTO perguntas VALUES (null,1, '$pergunta', '$alt1', '$alt2', '$alt3', '$alt4',  ".intval($row['id']).")";
+            $stmt = "INSERT INTO pergunta VALUES (null, '$pergunta', '$alt1', '$alt2', '$alt3', '$alt4',  ".intval($row['idquestionario']).")";
             mysqli_query($this->mysqli, $stmt);
 
         }
@@ -52,6 +52,11 @@
             }
         }
 
+        public function delTurma($nomeTurma) {
+            $stmt = "DELETE FROM turma WHERE nomeTurma = '$nomeTurma'";
+            mysqli_query($this->mysqli, $stmt);
+        }
+
         public function getQuestionario() {
             $result = $this->mysqli->query("SELECT * FROM questionario");
             while ($row = $result->fetch_array(MYSQLI_ASSOC)) {
@@ -62,10 +67,11 @@
 
         public function getTurmaQuestionario($string) {
             $array = array();
-            $turmaID = $this->mysqli->query("SELECT id FROM turma WHERE turma = '$string'");
+            $turmaID = $this->mysqli->query("SELECT idturma FROM turma WHERE nomeTurma = '$string'");
             $turmaID = mysqli_fetch_assoc($turmaID);
 
-            $result = $this->mysqli->query("SELECT * FROM turma as t inner join questionario as q on q.turma_id = ".$turmaID['id']." and t.id = " .$turmaID['id']." LEFT join perguntas as p on p.questionario_idquestionario = q.id group by titulo;");
+            $result = $this->mysqli->query("SELECT * FROM turma as t inner join questionario as q on q.turma_idturma = ".$turmaID['idturma']." and t.idturma = " .$turmaID['idturma']." LEFT join pergunta as p on p.questionario_idquestionario = q.idquestionario group by titulo;");
+
             while ($row = $result->fetch_array(MYSQLI_ASSOC)) {
                 $array[] = $row;
             }
@@ -76,15 +82,28 @@
             }
         }
 
-        public function getPerguntas($titulo, $turma) {
-            $array = array();
-            $turmaID = $this->mysqli->query("SELECT id FROM turma WHERE turma = '$turma'");
-            $turmaID = mysqli_fetch_assoc($turmaID);
+        public function delQuestionario($titulo) {
 
-            $questionarioID = $this->mysqli->query("SELECT id FROM questionario WHERE titulo = '$titulo'");
+            $questionarioID = $this->mysqli->query("SELECT idquestionario FROM questionario WHERE titulo = '$titulo'");
             $questionarioID = mysqli_fetch_assoc($questionarioID);
 
-            $result = $this->mysqli->query("SELECT * FROM turma AS t INNER JOIN questionario AS q ON q.turma_id = ".$turmaID['id']." AND t.id = ".$turmaID['id']." INNER JOIN perguntas AS p ON p.questionario_idquestionario = ".$questionarioID['id']." AND q.id = ".$questionarioID['id'].";");
+
+            $stmt = "DELETE FROM pergunta WHERE questionario_idquestionario = ".$questionarioID['idquestionario']."";
+            mysqli_query($this->mysqli, $stmt);
+            $stmt = "DELETE FROM questionario where titulo = '$titulo'";
+            mysqli_query($this->mysqli, $stmt);
+
+        }
+
+        public function getPerguntas($titulo, $turma) {
+            $array = array();
+            $turmaID = $this->mysqli->query("SELECT idturma FROM turma WHERE nomeTurma = '$turma'");
+            $turmaID = mysqli_fetch_assoc($turmaID);
+
+            $questionarioID = $this->mysqli->query("SELECT idquestionario FROM questionario WHERE titulo = '$titulo'");
+            $questionarioID = mysqli_fetch_assoc($questionarioID);
+
+            $result = $this->mysqli->query("SELECT * FROM turma AS t INNER JOIN questionario AS q ON q.turma_idturma = ".$turmaID['idturma']." AND t.idturma = ".$turmaID['idturma']." INNER JOIN pergunta AS p ON p.questionario_idquestionario = ".$questionarioID['idquestionario']." AND q.idquestionario = ".$questionarioID['idquestionario'].";");
             
             while ($row = $result->fetch_array(MYSQLI_ASSOC)) {
                 $array[] = $row;
@@ -94,6 +113,37 @@
             } else {
                 return;
             }
+        }
+
+        public function delPergunta($nomePergunta) {
+            $stmt = "DELETE FROM pergunta WHERE pergunta = '$nomePergunta';";
+            mysqli_query($this->mysqli, $stmt);
+        }
+
+        public function setAluno($nome, $matricula, $turma) {
+            $turmaID = $this->mysqli->query("SELECT idturma FROM turma WHERE nomeTurma = '$turma'");
+            $turmaID = mysqli_fetch_assoc($turmaID);
+
+            $stmt = "INSERT INTO aluno VALUES (null, '$nome', '$matricula', 1, ".$turmaID['idturma'].")";
+            mysqli_query($this->mysqli, $stmt);
+        }
+
+        public function getAluno() {
+            $array = array();
+            $result = $this->mysqli->query("select * from turma as t inner join aluno as a on a.turma_idturma = t.idturma order by t.nomeTurma asc;");
+            while ($row = $result->fetch_array(MYSQLI_ASSOC)) {
+                $array[] = $row;
+            }
+            if($array) {
+                return $array;
+            } else {
+                return;
+            }
+        }
+
+        public function delAluno($idAluno) {
+            $stmt = "DELETE FROM aluno WHERE idaluno = $idAluno";
+            mysqli_query($this->mysqli, $stmt);
         }
 
     }

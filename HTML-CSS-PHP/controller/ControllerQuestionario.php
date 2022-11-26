@@ -1,4 +1,7 @@
 <?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 require_once("../model/Questionario.php");
 class QuestionarioController{
 
@@ -72,7 +75,7 @@ class QuestionarioController{
 
     public function deletar(){
         $this->banco->delQuestionario($_POST['deletarQuestionario']);
-        header("location: ../view/index.php");
+        header("location: ../view/inicio.php");
     }
 
 }

@@ -1,5 +1,8 @@
-<?php
-require_once("../controller/ControllerTurma.php");
+<?php 
+    if (session_status() === PHP_SESSION_NONE) {
+        session_start();
+    }
+    require_once("../controller/ControllerLogin.php")
 ?>
 
 <!DOCTYPE html>
@@ -15,23 +18,16 @@ require_once("../controller/ControllerTurma.php");
 </head>
 
 <body>
-    <?php include("menu.php"); ?>
     <div class="box">
-        <h1>Turmas</h1>
-        <hr>
-        <div  style="max-height: 500px; overflow-y: auto; overflow-x: hidden">
-            <table cellspacing="0" cellpadding="0" width="100%">
-                <tr>
-                    <th class="tituloTabela">Turma</th>
-                    <th class="tituloTabela"></th>
-                    <th class="tituloTabela"></th>
-                </tr>
-                <?php
-                    $turma = new TurmaController();
-                    $turma->listarTabelaTurma();
-                ?>
-            </table>
-        </div>
+        <?php
+            $loginController->clearLogin();
+
+            if(isset($_POST["souAluno"])) {
+                require_once("loginAluno.php");
+            } else {
+                require_once("loginProfessor.php");
+            }
+        ?>
     </div>
 </body>
 

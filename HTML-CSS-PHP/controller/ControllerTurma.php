@@ -1,4 +1,7 @@
 <?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 require_once("../model/Turma.php");
 class TurmaController{
 
@@ -62,7 +65,7 @@ class TurmaController{
 
     public function deletar() {
         $this->banco->delTurma($_POST['deletarTurma']);
-        header("location: ../view/index.php");
+        header("location: ../view/inicio.php");
     }
 
 }

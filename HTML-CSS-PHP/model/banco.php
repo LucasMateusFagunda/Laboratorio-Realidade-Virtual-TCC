@@ -144,6 +144,9 @@ if (session_status() === PHP_SESSION_NONE) {
         }
 
         public function delAluno($idAluno) {
+            $stmt = "DELETE FROM aluno_has_pergunta WHERE aluno_idaluno = $idAluno";
+            mysqli_query($this->mysqli, $stmt);
+
             $stmt = "DELETE FROM aluno WHERE idaluno = $idAluno";
             mysqli_query($this->mysqli, $stmt);
         }
@@ -159,6 +162,32 @@ if (session_status() === PHP_SESSION_NONE) {
             } else {
                 return;
             }
+        }
+
+        public function setAssociacao($alunoId, $questionarioID) {
+            $perguntaID = $this->mysqli->query("SELECT idpergunta FROM pergunta AS p INNER JOIN questionario AS q ON p.questionario_idquestionario = $questionarioID;");
+            $perguntaID = mysqli_fetch_assoc($perguntaID);
+
+            $stmt = "INSERT INTO aluno_has_pergunta VALUES ($alunoId, ".$perguntaID['idpergunta'].")";
+            mysqli_query($this->mysqli, $stmt);
+        }
+
+        public function getAssociacao() {
+            $array = array();
+            $result = $this->mysqli->query("SELECT a.idaluno, p.idpergunta, a.nome, q.titulo FROM aluno_has_pergunta AS ap INNER JOIN aluno AS a on ap.aluno_idaluno = a.idaluno AND a.professor_idprofessor = ".$_SESSION['idProfessor']." INNER JOIN pergunta AS p ON ap.pergunta_idpergunta = p.idpergunta INNER JOIN questionario AS q ON p.questionario_idquestionario = q.idquestionario;");
+            while ($row = $result->fetch_array(MYSQLI_ASSOC)) {
+                $array[] = $row;
+            }
+            if($array) {
+                return $array;
+            } else {
+                return;
+            }
+        }
+
+        public function delAssociacao($idAluno, $idPergunta) {
+            $stmt = "DELETE FROM aluno_has_pergunta WHERE aluno_idaluno = $idAluno and pergunta_idpergunta = $idPergunta";
+            mysqli_query($this->mysqli, $stmt);
         }
 
         public function checkLoginAluno($nome, $matricula) {

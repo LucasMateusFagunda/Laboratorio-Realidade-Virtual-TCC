@@ -32,6 +32,18 @@ class QuestionarioController{
         }
     }
 
+    Public function listarQuestionarioLista() {
+        $row = $this->banco->getQuestionario();
+        if ($row) {
+            foreach ($row as $value) {
+                echo "<option value='".$value['idquestionario']."'>".$value['titulo']."</option>";
+                echo $value['titulo'];
+            }
+        } else {
+            echo "<option>Não possui questionario</option>";
+        }
+    }
+
     public function listarQuestionarioTurma($string) {
         
         $row = $this->banco->getTurmaQuestionario($string);

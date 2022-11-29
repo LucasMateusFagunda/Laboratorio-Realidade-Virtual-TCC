@@ -7,7 +7,7 @@
 .menuButton {
     border: 0;
     background: #191919f0;
-    display: inline;
+    display: inline-block;
     top: 10px;
     position: relative;
     margin: 10px auto;

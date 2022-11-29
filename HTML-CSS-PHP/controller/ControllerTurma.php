@@ -22,8 +22,12 @@ class TurmaController{
     public function listarTurma() {
         
         $row = $this->banco->getTurma();
-        foreach ($row as $value) {
-            echo "<option value='".$value['nomeTurma']."'>".$value['nomeTurma']."</option>";
+        if($row != null) {
+            foreach ($row as $value) {
+                echo "<option value='".$value['nomeTurma']."'>".$value['nomeTurma']."</option>";
+            }
+        } else {
+            echo "<option>Não possui turma</option>";
         }
     }
 

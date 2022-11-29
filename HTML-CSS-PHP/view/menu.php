@@ -7,6 +7,7 @@
                 <a class='menuButton' href='cadastroQuestionario' style='text-decoration: none;'>Criar questionário</a>
                 <a class='menuButton' href='cadastroAluno.php' style='text-decoration: none;'>Cadastrar Alunos</a>
                 <a class='menuButton' href='visualizarAluno.php' style='text-decoration: none;'>Visualizar Alunos</a> 
+                <a class='menuButton' href='associar.php' style='text-decoration: none;'>Associar Alunos</a>
             ";
         }
     ?>   

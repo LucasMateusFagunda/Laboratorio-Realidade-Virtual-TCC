@@ -5,6 +5,3 @@
     <input type="password" name="senha" placeholder="Senha" required>
     <button type="submit" name="professor" value="professor">Login</button>
 </form>
-<form method="POST" action="../view/index.php" name="form">
-    <button type="submit" name="souAluno">Sou aluno</button>
-</form>

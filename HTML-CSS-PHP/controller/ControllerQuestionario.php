@@ -85,6 +85,37 @@ class QuestionarioController{
         }
     }
 
+    public function listaQuestionarioPorAluno() {
+        $row = $this->banco->getQuestionarioByIdAluno();
+        if($row != null) {
+            foreach ($row as $value) {
+                echo "
+                    <tr>
+                    <th>
+                        ".$value['titulo']."
+                    </th>
+
+                    <th>
+                    <form action='listaPerguntas.php' method='post'>
+                    <button class='viewButton' name='visualizarQuestionario' value='".$value['idquestionario']."'>Visualizar</button>
+                    </form>
+                    </th>
+                ";
+            }
+        } else {
+            echo "
+                <tr>
+                    <th>
+                    Não possui Questionários
+                    </th>
+
+                    <th></th>
+                    <th></th>
+                </tr
+            ";
+        }
+    }
+
     public function deletar(){
         $this->banco->delQuestionario($_POST['deletarQuestionario']);
         header("location: ../view/inicio.php");

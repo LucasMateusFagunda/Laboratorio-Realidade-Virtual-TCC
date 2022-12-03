@@ -4,6 +4,7 @@
     }
     require_once("menu.php");
     require_once("../controller/ControllerPerguntas.php");
+    require_once("../controller/ControllerQuestionario.php")
 ?>
 
 <!DOCTYPE html>
@@ -34,6 +35,8 @@
                     $listar = new Perguntas();
                     if(isset($_POST['visualizarTitulo'])) {
                         $listar->listarPerguntas($_POST['visualizarTitulo'], $_POST['visualizarTurma']);
+                    } else if(isset($_POST['visualisarQuestionario'])) {
+                        $listar;
                     } else {
                         echo "
                             <tr>

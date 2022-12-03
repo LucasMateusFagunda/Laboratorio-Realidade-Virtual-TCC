@@ -67,6 +67,15 @@ if (session_status() === PHP_SESSION_NONE) {
             return $array;
         }
 
+        public function getQuestionarioByIdAluno() {
+            $result = $this->mysqli->query("SELECT q.idquestionario, q.titulo FROM aluno_has_pergunta AS ap INNER JOIN pergunta AS p ON ap.pergunta_idpergunta = p.idpergunta AND ap.aluno_idaluno = ".$_SESSION['idAluno']." INNER JOIN questionario AS q ON p.questionario_idquestionario = q.idquestionario;
+            ");
+            while ($row = $result->fetch_array(MYSQLI_ASSOC)) {
+                $array[] = $row;
+            }
+            return $array;
+        }
+
         public function getTurmaQuestionario($string) {
             $array = array();
             $turmaID = $this->mysqli->query("SELECT idturma FROM turma WHERE nomeTurma = '$string'");
@@ -106,6 +115,19 @@ if (session_status() === PHP_SESSION_NONE) {
             $questionarioID = mysqli_fetch_assoc($questionarioID);
 
             $result = $this->mysqli->query("SELECT * FROM turma AS t INNER JOIN questionario AS q ON q.turma_idturma = ".$turmaID['idturma']." AND t.idturma = ".$turmaID['idturma']." INNER JOIN pergunta AS p ON p.questionario_idquestionario = ".$questionarioID['idquestionario']." AND q.idquestionario = ".$questionarioID['idquestionario'].";");
+            
+            while ($row = $result->fetch_array(MYSQLI_ASSOC)) {
+                $array[] = $row;
+            }
+            if($array) {
+                return $array;
+            } else {
+                return;
+            }
+        }
+
+        public function getPerguntaByAluno($idquestionario) {
+            $result = $this->mysqli->query("select * from pergunta where questionario_idquestionario = $idquestionario;");
             
             while ($row = $result->fetch_array(MYSQLI_ASSOC)) {
                 $array[] = $row;

@@ -21,12 +21,7 @@
     <div class="box">
         <?php
             $loginController->clearLogin();
-
-            if(isset($_POST["souAluno"])) {
-                require_once("loginAluno.php");
-            } else {
-                require_once("loginProfessor.php");
-            }
+            require_once("loginProfessor.php");   
         ?>
     </div>
 </body>

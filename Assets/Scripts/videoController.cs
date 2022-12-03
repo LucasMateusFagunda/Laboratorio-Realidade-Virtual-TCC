@@ -31,7 +31,6 @@ public class videoController : MonoBehaviour
             disableVideo();
             videoPlaying = false;
         }
-        print("teste");
     }
 
     public void enableVideo() {

@@ -30,27 +30,7 @@ class LoginController {
         if($row != null) {
             header("location: ../view/inicio.php");
         } else {
-            echo "chau";
-        }
-    }
-
-    public function loginAluno() {
-        $this->login->setNomeAluno($_POST["nome"]);
-        $this->login->setMatricula($_POST["matricula"]);
-        $this->login->setStatus("aluno");
-        $row = $this->banco->checkLoginAluno($_SESSION["nomeAluno"], $_SESSION["matricula"]);
-        foreach($row as $value) {
-            $this->login->setIdAluno($value["idaluno"]);
-            $this->login->setNomeAluno($value["nome"]);
-            $this->login->setMatricula($value["matricula"]);
-            $this->login->setIdProfessor($value["professor_idprofessor"]);
-            $this->login->setIdTurma($value["turma_idturma"]);
-        }
-
-        if($row != null) {
-            header("location: ../view/inicio.php");
-        } else {
-            echo "chau";
+            header("location: ../view/index.php");
         }
     }
 
@@ -76,8 +56,6 @@ $loginController = new LoginController();
 
 if(isset($_POST["professor"])) {
     $loginController->loginProfessor();
-} else if (isset($_POST["aluno"])) {
-    $loginController->loginAluno();
 }
 
 ?>
